@@ -1,0 +1,36 @@
+<div class="container login-container">
+  <div class="row login-form-container">
+    
+    <div class="col-sm-3 main-login-forms">
+      <form class="form" name="form" ng-submit="vm.login(form)" novalidate>
+
+        <div class="form-group">
+          <label>Username</label>
+
+          <input type="text" name="username" class="form-control" ng-model="vm.user.username" required>
+        </div>
+
+        <div class="form-group">
+          <label>Merch Code</label>
+
+          <input type="text" name="merchcode" class="form-control" ng-model="vm.user.merchcode" required>
+        </div>
+
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.username.$error.required && form.merchcode.$error.required && vm.submitted">
+             Please enter your email and password.
+          </p>
+          <p class="help-block">{{ vm.errors.other }}</p>
+        </div>
+
+        <div class = "login-butts">
+          <button class="btn btn-lg btn-login btn-login-custom" type="submit">
+            Login
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <hr>
+</div>

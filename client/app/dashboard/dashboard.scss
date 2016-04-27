@@ -1,0 +1,29 @@
+.side-nav {
+	display: inline-block;
+	width: 15%;
+	height:100vh;
+	background-color:grey;
+	float:left;
+	vertical-align:top;
+}
+
+.side-nav ul li{
+	display:block;
+}
+.side-nav ul{
+	padding-left:0px;
+}
+
+.side-nav ul li a{
+	color: white;
+	padding: 15px;
+	display: block;
+}
+
+.side-nav .active{
+	background-color: rgba(0,0,0,0.8);
+}
+
+.dashboard-container{
+	width: 100%;
+}
