@@ -4,13 +4,17 @@ import {Strategy as LocalStrategy} from 'passport-local';
 function localAuthenticate(User, username, merchcode, done) {
   User.find({
     where: {
-      username: username
+      $and:{
+        username: username,
+        merchcode: merchcode
+      }
+      
     }
   })
     .then(user => {
       if (!user) {
         return done(null, false, {
-          message: 'This email is not registered.'
+          message: 'Your username or merchcode is incorrect.'
         });
       }
       user.authenticate(merchcode, function(authError, authenticated) {

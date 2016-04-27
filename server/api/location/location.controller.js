@@ -12,6 +12,7 @@
 import _ from 'lodash';
 import {Location} from '../../sqldb';
 
+
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {

@@ -18,7 +18,9 @@ angular.module('dashboardApp')
                           $state.current.referrer ||
                           'main';
           Auth.logout();
-          $state.go(referrer);
+          /*$state.go(referrer);*/
+          $state.go('login');
+          
         }
       })
       .state('signup', {
