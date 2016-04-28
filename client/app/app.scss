@@ -7,6 +7,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
  * App-wide Styles
  */
 
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,6 +20,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 	margin-bottom: 0px;
 }
 
+a:hover, a:focus{
+	text-decoration:none;
+}
+
 // Component styles are injected through grunt
 /* inject:scss */
 @import 'account/login.scss';
@@ -26,6 +31,9 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import 'dashboard/dashboard.scss';
 @import 'dashboardview/dashboardview.scss';
 @import 'main/main.scss';
+@import 'orders/orders.scss';
+@import '../components/date-location-bar/date-location-bar.scss';
 @import '../components/footer/footer.scss';
 @import '../components/modal/modal.scss';
+@import '../components/navbar/navbar.scss';
 /* endinject */

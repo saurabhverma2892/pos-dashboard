@@ -126,7 +126,8 @@ export function me(req, res, next) {
     attributes: [
       'id',
       'username',
-      'cloud_site_id'
+      'cloud_site_id',
+      'restaurant_name'
     ]
   })
     .then(user => { // don't ever give out the password or salt

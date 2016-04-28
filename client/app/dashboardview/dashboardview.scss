@@ -1,31 +1,6 @@
 .main-content-view{
 	display: inline-block;
-	width: 85%;
+	width: 100%;
 	vertical-align:top;
 	padding: 20px;
-}
-
-.main-content-view .date-container{
-	display:inline-block;
-	width: 30%;
-}
-.dates{
-	display:initial;
-}
-
-.main-content-view .date-container .form-control{
-	height:33px;
-	font-size: 11px;
-}
-
-.locations{
-	display: inline-block;
-	float:right;
-}
-
-.locations ul li{
-	display: inline-block;
-	padding: 10px;
-	border: 1px solid #ccc;
-	margin-left:10px;
 }

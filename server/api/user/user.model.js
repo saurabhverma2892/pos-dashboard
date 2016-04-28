@@ -18,6 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       user_id: DataTypes.INTEGER,
       username: DataTypes.STRING,
       merchcode: DataTypes.STRING,
+      restaurant_name: DataTypes.STRING,
       cloud_site_id: DataTypes.INTEGER,
 
   }, {

@@ -1,0 +1,36 @@
+.date-location-container .date-container{
+	display:inline-block;
+	width: 30%;
+}
+.dates{
+	display:initial;
+}
+
+.date-location-container .date-container .form-control{
+	height:33px;
+	font-size: 11px;
+}
+
+.locations{
+	display: inline-block;
+	float:right;
+}
+
+.locations button{
+	display: inline-block;
+	padding: 10px;
+	border: 1px solid #ccc;
+	margin-left:10px;
+	background-color: white;
+	outline:none;
+}
+
+.no-border-radius
+{
+	border-radius: 0%;
+}
+
+.locations .active{
+	background-color:#6ab2ed;
+	color: white;
+}
