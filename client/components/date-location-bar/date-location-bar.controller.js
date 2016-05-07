@@ -5,45 +5,37 @@ class dateLocationBarController {
   constructor($scope, $http, Auth, $rootScope, dateLocationService) {
       var cloud_site_id = Auth.getCurrentUser().cloud_site_id;
 
-      $scope.selectedLocation = dateLocationService.filters.location;
-      $scope.dates = dateLocationService.filters.dates;
-
-
-      $scope.$on( 'location.changed', function() {
-                $scope.selectedLocation = dateLocationService.filters.location;
-              });
-
-      $scope.$on( 'date.changed', function() {
-        console.log("date changing");
-        $scope.dates = dateLocationService.filters.dates;
+      dateLocationService.getLocations.success(function(locations){
+        $scope.locations = locations;
+        $scope.selectedLocation = $scope.locations[0];
       });
+
 
       $scope.selectLocation = function(new_location){
           dateLocationService.changeLocation(new_location);
+          $scope.selectedLocation = new_location;
       }
 
-      $scope.changeDateTo = function(new_date){
-          dateLocationService.changeDateTo(new_date);
+      $scope.setDateTo = function(newDateTo){
+          dateLocationService.changeDateTo(newDateTo);
       }
 
-      $scope.changeDateFrom = function(new_date){
-          dateLocationService.changeDateFrom(new_date);
+      $scope.setDateFrom = function(newDateFrom){
+          dateLocationService.changeDateFrom(newDateFrom);
       }
 
+      /*-------------------*/
 
-      $http.get('/api/locations/'+cloud_site_id).then(response => {
-        $scope.locations = response.data;
-        $scope.selectedLocation = $scope.locations[0];
-      });
-      /**/
-      /*dates*/
+      /*---------------dates----------------*/
       $scope.today = function() {
-        $scope.dt = new Date();
+        $scope.dateTo = dateLocationService.filters.date_to;
+        $scope.dateFrom = dateLocationService.filters.date_from;
       };
       $scope.today();
 
       $scope.clear = function() {
-        $scope.dt = null;
+        $scope.dateTo = null;
+        $scope.dateFrom = null;
       };
 
       $scope.inlineOptions = {
@@ -53,19 +45,12 @@ class dateLocationBarController {
       };
 
       $scope.dateOptions = {
-        dateDisabled: disabled,
         formatYear: 'yy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
         startingDay: 1
       };
 
-      // Disable weekend selection
-      function disabled(data) {
-        var date = data.date,
-          mode = data.mode;
-        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-      }
 
       $scope.toggleMin = function() {
         $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
@@ -84,6 +69,7 @@ class dateLocationBarController {
 
       $scope.setDate = function(year, month, day) {
         $scope.dt = new Date(year, month, day);
+        return $scope.dt;
       };
 
       $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -127,14 +113,11 @@ class dateLocationBarController {
             }
           }
         }
-
         return '';
       }
-
+      /*------------------dates config ends here--------------*/
 
   }
-  
-
 }
 
 angular.module('dashboardApp')

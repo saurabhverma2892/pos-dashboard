@@ -10,7 +10,7 @@ angular.module('dashboardApp', [
   'ui.router',
   'ui.bootstrap',
   'validation.match',
-  'highcharts-ng'
+  'nvd3'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

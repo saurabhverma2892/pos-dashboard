@@ -2,5 +2,110 @@
 	display: inline-block;
 	width: 100%;
 	vertical-align:top;
-	padding: 20px;
+}
+
+.dashboard-card{
+	position:relative;
+	padding:50px 20px;
+	width:32%;
+	display:inline-block;
+	margin-right:2%;
+	vertical-align:top;
+}
+
+.dashboard-card .card-title
+{
+	position: absolute;
+	top: 2px;
+	left:4px;
+	font-size:11px;
+}
+
+.dashboard-card .dashboard-content-left{
+	display: inline-block;
+	vertical-align: top;
+	width:50%;
+	position:relative;
+}
+
+.dashboard-card .dashboard-content-right{
+	display: inline-block;
+	vertical-align: top;
+	width:50%;
+	border-left: 2px solid rgba(255,255,255,0.6);
+	text-align:center;
+}
+
+.dashboard-card .view-more{
+	position: absolute;
+	right: 4px;
+	bottom: 2px;
+	font-size:11px;	
+}
+
+.dashboard-card .total-number{
+	font-size: 28px;
+	display:inline-block;
+}
+
+.stats-table{
+	display: inline-block;
+	text-align:left;
+	font-size:12px;
+}
+.total-number-container{
+	position: absolute;
+	right:0px;
+	left:0px;
+	margin: auto;
+	display:inline-block;
+	margin-top:5px;
+}
+.dashboard-card .stats{
+	display:inline-block;
+	font-size:12px;
+}
+
+.revenue{
+	background-color: #40c381;
+	color: white;
+}
+
+.orders{
+	background-color: #65c6bb;
+	color: white;
+}
+
+.expenses{
+	background-color: #eb3766;
+	color: white;
+}
+
+.stat-value{
+	background-color: white;
+} 
+
+.revenue .stat-value{
+	color:#40c381;
+}
+
+.orders .stat-value{
+	color:#65c6bb;
+}
+
+.expenses .stat-value{
+	color:#eb3766;
+}
+
+.loader{
+	text-align: center;
+	position:relative;
+}
+
+.loader-img{
+	position: absolute;
+	display: inline-block;
+	right: 0px;
+	left: 0px;
+	margin: auto;
 }

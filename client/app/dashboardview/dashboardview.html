@@ -1,5 +1,134 @@
-<div class = "main-content-view">
+<div class = "loader" ng-if="orders =='' "><img class = "loader-img" ng-src = "/assets/images/loader.gif"/></div>
+<div ng-if="orders !='' " class = "main-content-view">
 	
-	<highchart id="chart1" config="chartConfig"></highchart>
+	<!-- <h1>asd{{location}}</h1>
+	<p>{{date_to | date:'short'}}</p>
+	<p>{{date_from}}</p>  -->
 
+	<div class = "dashboard-card revenue">
+		<div class = "card-title">
+			REVENUE
+		</div>
+		<div class = "dashboard-content-left">
+			<div class = "total-number-container">
+				<div class = "total-number">
+					{{getTotalRevenue() | number : 0}}
+				</div>
+				<div class = "stats">
+					10% up from last week
+				</div>
+			</div>
+		</div><div class = "dashboard-content-right">
+			<div class = "stats-container">
+				<table class = "stats-table">
+					<tr>
+						<td>Cash:</td>
+						<td>15,000</td>
+					</tr>
+					<tr>
+						<td>Paytm:</td>
+						<td>3021</td>
+					</tr>
+					<tr>
+						<td>Others:</td>
+						<td>1028</td>
+					</tr>
+					<tr>
+						<td>Card:</td>
+						<td>1028</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class = "view-more">
+			view more
+		</div>
+	</div><div class = "dashboard-card orders">
+			<div class = "card-title">
+				ORDERS
+			</div>
+			<div class = "dashboard-content-left">
+				<div class = "total-number-container">
+					<div class = "total-number">
+						{{getTotalNumber()}}
+					</div>
+					<div class = "stats">
+						10% up from last week
+					</div>
+				</div>
+			</div><div class = "dashboard-content-right">
+				<div class = "stats-container">
+					<table class = "stats-table">
+						<tr>
+							<td>Cash:</td>
+							<td>15,000</td>
+						</tr>
+						<tr>
+							<td>Paytm:</td>
+							<td>3021</td>
+						</tr>
+						<tr>
+							<td>Others:</td>
+							<td>1028</td>
+						</tr>
+						<tr>
+							<td>Card:</td>
+							<td>1028</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class = "view-more">
+				view more
+			</div>
+		</div><div class = "dashboard-card expenses" style = "margin-right:0px;">
+			<div class = "card-title">
+				EXPENSES
+			</div>
+			<div class = "dashboard-content-left">
+				<div class = "total-number-container">
+					<div class = "total-number">
+						20,0000
+					</div>
+					<div class = "stats">
+						10% up from last week
+					</div>
+				</div>
+			</div><div class = "dashboard-content-right">
+				<div class = "stats-container">
+					<table class = "stats-table">
+						<tr>
+							<td>Cash:</td>
+							<td>15,000</td>
+						</tr>
+						<tr>
+							<td>Paytm:</td>
+							<td>3021</td>
+						</tr>
+						<tr>
+							<td>Others:</td>
+							<td>1028</td>
+						</tr>
+						<tr>
+							<td>Card:</td>
+							<td>1028</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class = "view-more">
+				view more
+			</div>
+		</div>
+
+		<nvd3 options="options" data="data"></nvd3>
 </div>
+
+
+
+<!-- <ul>
+	<li ng-repeat = "order in orders">
+		<p>{{order.date_added | date:'short'}}</p>
+		<p>{{order}}</p>
+	</li>
+</ul>  -->

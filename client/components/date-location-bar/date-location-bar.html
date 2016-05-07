@@ -5,7 +5,7 @@
 		<div class="row date-container">
 		      <div class="col-md-6">
 		        <p class="input-group">
-		          <input type="text" class="form-control no-border-radius" uib-datepicker-popup="{{format}}" ng-model="dateTo" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+		          <input type="text" class="form-control no-border-radius" uib-datepicker-popup="{{format}}" ng-model="dateFrom" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-change = "setDateFrom(dateFrom)" />
 		          <span class="input-group-btn">
 		            <button type="button " class="btn btn-default no-border-radius" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 		          </span>
@@ -16,7 +16,7 @@
 
 		      <div class="col-md-6">
 		        <p class="input-group">
-		          <input type="text" class="form-control no-border-radius" uib-datepicker-popup="{{format}}" ng-model="dateFrom" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+		          <input type="text" class="form-control no-border-radius" uib-datepicker-popup="{{format}}" ng-model="dateTo" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-change = "setDateTo(dateTo)" />
 		          <span class="input-group-btn">
 		            <button type="button" class="btn btn-default no-border-radius" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 		          </span>

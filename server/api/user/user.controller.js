@@ -1,6 +1,7 @@
 'use strict';
 
 import {User} from '../../sqldb';
+import {Location} from '../../sqldb';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
@@ -118,7 +119,7 @@ export function changePassword(req, res, next) {
  */
 export function me(req, res, next) {
   var userId = req.user.id;
-
+  
   return User.find({
     where: {
       id: userId
