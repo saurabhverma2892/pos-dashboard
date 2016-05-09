@@ -14,6 +14,10 @@ class DashboardviewComponent {
 
       $scope.orders = Orders.orders;
 
+      Orders.getOrdersReport.success(function(data){
+        console.log(data);
+      })
+
       var updateOrders = function(){
           Orders.updateOrders().success(function(data){
              $scope.orders = data;

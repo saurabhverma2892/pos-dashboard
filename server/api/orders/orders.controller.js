@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import {Orders} from '../../sqldb';
+import request from 'request';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -73,6 +74,18 @@ export function index(req, res) {
   })
     .then(respondWithResult(res))
     .catch(handleError(res));
+
+    /*return request({
+        headers: {
+          'Authorization': req.get("Authorization"),
+        },
+        uri: 'http://localhost:8080/api/locations/9881',
+        method: 'GET'
+      }, function (err, ress, body) {
+        console.log(ress);
+        res.send(body);
+        //it works!
+      });*/
 }
 
 // Gets a single Orders from the DB

@@ -42,6 +42,12 @@ angular.module('dashboardApp')
                                   }});
     }
 
+    
+    
+
+    var ordersReport = $http.get('/api/orders-reports/');
+    
+
     var order = "";
         
     /**/
@@ -54,7 +60,9 @@ angular.module('dashboardApp')
         
         updateOrders: updateOrders,
 
-        orders:order
+        orders:order,
+
+        getOrdersReport:ordersReport,
 
     }
 

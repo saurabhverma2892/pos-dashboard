@@ -26,6 +26,7 @@ function AuthService($location, $http, $cookies, $q, appConfig, Util, User) {
         merchcode: merchcode
       })
         .then(res => {
+          console.log(res.data.token);
           $cookies.put('token', res.data.token);
           currentUser = User.get();
           return currentUser.$promise;
