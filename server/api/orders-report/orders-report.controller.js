@@ -15,28 +15,26 @@ import request from 'request';
 
 // Gets a list of OrdersReports
 export function index(req, res) {
- request({
-          headers: {
-            'token': 'f8c511ccac60ba544c69b63f09c2226b',
-          },
-          uri: 'http://admin.limetray.com/crm/public/api/v2.1/reports?cloud_site_id=2339&from_date=1273412034&to_date=1462800988&device_id=122222222',
-          method: 'GET'
-        }, function (err, ress, body) {
-          /*res.send(body);*/
-          //it works!
-          res.send(body);
-        });
-  
+  console.log(req.query.location_id);
+  var date_to_human = new Date(req.query.date_to);
+  var date_to = date_to_human.getTime()/1000;
+
+  var date_from_human = new Date(req.query.date_from);
+  var date_from = date_from_human.getTime()/1000;
+
+  console.log(date_to);
+  console.log(date_from);
+
+  request({
+        headers: {
+          'token': req.get("authentication"),
+        },
+        uri: 'http://admin.limetray.com/crm/public/api/v2.1/reports?cloud_site_id='+req.query.id+"&from_date="+date_from+"&to_date="+date_to+"&device_id=122222222&location_ids[]="+req.query.location_id,
+        method: 'GET'
+      }, function (err, ress, body) {
+        /*res.send(body);*/
+        //it works!s
+        res.send(body);
+      });
 }
 
-// Gets a single OrdersReport from the DB
-export function show(req, res) {
-  return OrdersReport.find({
-    where: {
-      _id: req.params.id
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}

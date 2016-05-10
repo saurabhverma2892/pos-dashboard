@@ -10,7 +10,8 @@ angular.module('dashboardApp', [
   'ui.router',
   'ui.bootstrap',
   'validation.match',
-  'nvd3'
+  'nvd3',
+  'ab-base64'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

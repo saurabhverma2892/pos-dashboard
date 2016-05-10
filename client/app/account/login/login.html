@@ -31,6 +31,45 @@
 
       </form>
     </div>
+
+
+
+
+    <br />
+
+
+    <div class="col-sm-3 main-login-forms" ng-if = "vm.apiLogin">
+      <form class="form" name="apiLoginForm" ng-submit="vm.apiLoginForm(apiLoginForm)">
+
+        <div class="form-group">
+          <label>Username</label>
+
+          <input type="text" name="apiusername" class="form-control" ng-model="vm.user.apiusername" required>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <input type="text" name="password" class="form-control" ng-model="vm.user.password" required>
+        </div>
+
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.username.$error.required && form.merchcode.$error.required && vm.submitted">
+             Please enter your email and password.
+          </p>
+          <p class="help-block">{{ vm.errors.other }}</p>
+        </div>
+
+        <div class = "login-butts">
+          <button class="btn btn-lg btn-login btn-login-custom" type="submit">
+            Login
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+
   </div>
   <hr>
 </div>

@@ -12,7 +12,7 @@
 		<div class = "dashboard-content-left">
 			<div class = "total-number-container">
 				<div class = "total-number">
-					{{getTotalRevenue() | number : 0}}
+					{{total.total.revenue}}
 				</div>
 				<div class = "stats">
 					10% up from last week
@@ -50,7 +50,7 @@
 			<div class = "dashboard-content-left">
 				<div class = "total-number-container">
 					<div class = "total-number">
-						{{getTotalNumber()}}
+						{{total.total.total_orders}}
 					</div>
 					<div class = "stats">
 						10% up from last week

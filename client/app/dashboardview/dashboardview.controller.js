@@ -14,15 +14,25 @@ class DashboardviewComponent {
 
       $scope.orders = Orders.orders;
 
-      Orders.getOrdersReport.success(function(data){
+      if($scope.orders == ""){
+          Orders.setLocation.then(function(){
+              updateOrders();
+          }) 
+      }
+
+      /*Orders.getOrdersReport.success(function(data){
         console.log(data);
-      })
+      })*/
 
       var updateOrders = function(){
+        $scope.orders = "";
           Orders.updateOrders().success(function(data){
+
+             $scope.total = data.reports.total;
              $scope.orders = data;
              Orders.orders = data;
 
+             console.log(data);
 
              $scope.bar1 = [];
              angular.forEach($scope.orders, function(order){
@@ -46,11 +56,7 @@ class DashboardviewComponent {
            });
       }
 
-      if($scope.orders == ""){
-          Orders.setLocation.then(function(){
-              updateOrders();
-          }) 
-      }
+      
       $scope.$on( 'location.changed', function() {
              updateOrders();
             });
@@ -58,17 +64,6 @@ class DashboardviewComponent {
       $scope.$on( 'date.changed', function() {
           updateOrders();
       });
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -83,7 +78,7 @@ class DashboardviewComponent {
         return total;
     }
 
-    $scope.getTotalNumber = function(){
+    $scope.getTotalOrders = function(){
       return $scope.orders.length;
     }
 

@@ -1,12 +1,21 @@
 'use strict';
 
 angular.module('dashboardApp')
-  .service('dateLocationService', function ($rootScope, Auth, $http, $q) {
+  .service('dateLocationService', function ($rootScope, Auth, $http, $q, apiToken) {
 
     var filters = [];
     filters.date_to = new Date()
     filters.date_from = new Date(2013,1,22);
-    var locations = $http.get('/api/locations/'+Auth.getCurrentUser().cloud_site_id);
+    filters.location = new Array();
+
+    var req = {
+     method: 'GET',
+     url: '/api/locations/'+apiToken.data.cloud_site_id,
+     headers: {
+       'authentication': apiToken.apiToken
+     },
+    }
+    var locations = $http(req);
 
   	var service = {
 
@@ -16,7 +25,8 @@ angular.module('dashboardApp')
 
   		changeLocation: function( new_location ) {
         console.log("changing location");
-  			service.filters.location = new_location;
+        service.filters.location = [];
+  			service.filters.location.push(new_location.location_id);
   	    $rootScope.$broadcast( 'location.changed' );
   		},
   		changeDateTo: function( date_to ) {

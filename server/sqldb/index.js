@@ -16,8 +16,7 @@ var db = {
 
 // Insert models below
 /*db.OrderSources = db.sequelize.import('../api/order_sources/orders_sources.model'); db.OrderSources.sync();
-*/db.Orders = db.sequelize.import('../api/orders/orders.model'); db.Orders.sync();
-db.Location = db.sequelize.import('../api/location/location.model'); db.Location.sync();
+*/
 db.User = db.sequelize.import('../api/user/user.model');
 db.User.sync();
 
