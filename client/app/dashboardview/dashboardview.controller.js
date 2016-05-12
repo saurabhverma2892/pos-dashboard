@@ -14,6 +14,7 @@ class DashboardviewComponent {
 
       $scope.orders = Orders.orders;
 
+<<<<<<< HEAD
       $timeout(function(){
         console.log($scope.data[0].values);
         var a = [];
@@ -29,6 +30,28 @@ class DashboardviewComponent {
              $scope.orders = data;
              Orders.orders = data;
              console.log(data);
+=======
+      if($scope.orders == ""){
+          Orders.setLocation.then(function(){
+              updateOrders();
+          }) 
+      }
+
+      /*Orders.getOrdersReport.success(function(data){
+        console.log(data);
+      })*/
+
+      var updateOrders = function(){
+        $scope.orders = "";
+          Orders.updateOrders().success(function(data){
+
+             $scope.total = data.reports.total;
+             $scope.orders = data;
+             Orders.orders = data;
+
+             console.log(data);
+
+>>>>>>> ee9696fa7efb34e37f03544dec29d40cd7d4f954
              $scope.bar1 = [];
              $scope.total_orders = 0;
              $scope.total_revenue = 0;
@@ -57,11 +80,7 @@ class DashboardviewComponent {
            });
       }
 
-      if($scope.orders == ""){
-          Orders.setLocation.then(function(){
-              updateOrders();
-          }) 
-      }
+      
       $scope.$on( 'location.changed', function() {
              updateOrders();
             });
@@ -71,6 +90,25 @@ class DashboardviewComponent {
       });
 
 
+<<<<<<< HEAD
+=======
+
+
+    $scope.getTotalRevenue = function(){
+        var total = 0;
+        console.log();
+        for(var i = 0; i < $scope.orders.length; i++){
+            var order_amount = $scope.orders[i].order_amount;
+            total += order_amount;
+        }
+        return total;
+    }
+
+    $scope.getTotalOrders = function(){
+      return $scope.orders.length;
+    }
+
+>>>>>>> ee9696fa7efb34e37f03544dec29d40cd7d4f954
     /* Chart options */
 
     /* Chart data */

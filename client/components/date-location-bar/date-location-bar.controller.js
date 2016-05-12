@@ -6,7 +6,16 @@ class dateLocationBarController {
       var cloud_site_id = Auth.getCurrentUser().cloud_site_id;
 
       dateLocationService.getLocations.success(function(locations){
-        $scope.locations = locations;
+
+        var locations_list = new Array();
+
+        angular.forEach(locations.data.cities, function(city) {
+          angular.forEach(city.outlets, function(outlet){
+              locations_list.push(outlet);
+          }) 
+          /*this.push(key + ': ' + value);*/
+        });
+        $scope.locations = locations_list;
         $scope.selectedLocation = $scope.locations[0];
       });
 

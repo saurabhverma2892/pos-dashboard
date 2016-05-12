@@ -19,14 +19,14 @@ export function isAuthenticated() {
   return compose()
     // Validate jwt
     .use(function(req, res, next) {
-      // allow access_token to be passed through query parameter as well
+      // allow access_token to be passed through query parameter as well so i can send in the token in my query with access_token=??
       if (req.query && req.query.hasOwnProperty('access_token')) {
         req.headers.authorization = 'Bearer ' + req.query.access_token;
       }
       validateJwt(req, res, next);
     })
     // Attach user to request
-    .use(function(req, res, next) {
+    /*.use(function(req, res, next) {
       User.find({
         where: {
           id: req.user.id
@@ -40,7 +40,7 @@ export function isAuthenticated() {
           next();
         })
         .catch(err => next(err));
-    });
+    });*/
 }
 
 /**
@@ -67,11 +67,3 @@ export function signToken(id, role) {
 /**
  * Set token cookie directly for oAuth strategies
  */
-export function setTokenCookie(req, res) {
-  if (!req.user) {
-    return res.status(404).send('It looks like you aren\'t logged in, please try again.');
-  }
-  var token = signToken(req.user.id, req.user.role);
-  res.cookie('token', token);
-  res.redirect('/');
-}

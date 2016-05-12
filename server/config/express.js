@@ -18,8 +18,13 @@ import path from 'path';
 import passport from 'passport';
 import session from 'express-session';
 import sqldb from '../sqldb';
+<<<<<<< HEAD
 /*import expressSequelizeSession from 'express-sequelize-session';
 *//*var Store = expressSequelizeSession(session.Store);
+=======
+/*import expressSequelizeSession from 'express-sequelize-session';*/
+/*var Store = expressSequelizeSession(session.Store);
+>>>>>>> ee9696fa7efb34e37f03544dec29d40cd7d4f954
 */
 export default function(app) {
   var env = app.get('env');
@@ -37,12 +42,28 @@ export default function(app) {
   // Persist sessions with MongoStore / sequelizeStore
   // We need to enable sessions for passport-twitter because it's an
   // oauth 1.0 strategy, and Lusca depends on sessions
+<<<<<<< HEAD
  /* app.use(session({
+=======
+
+
+
+/*was creating problems so disabling store*/
+
+  /*app.use(session({
+>>>>>>> ee9696fa7efb34e37f03544dec29d40cd7d4f954
     secret: config.secrets.session,
     saveUninitialized: true,
     resave: false,
     store: new Store(sqldb.sequelize)
   }));*/
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> ee9696fa7efb34e37f03544dec29d40cd7d4f954
 
   /**
    * Lusca - express server security
