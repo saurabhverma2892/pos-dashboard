@@ -60,54 +60,12 @@ function handleError(res, statusCode) {
 
 // Gets a list of OrderSourcess
 export function index(req, res) {
-  return OrderSources.findAll()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Gets a single OrderSources from the DB
-export function show(req, res) {
-  return OrderSources.find({
-    where: {
-      _id: req.params.id
-    }
+  return OrderSources.findAll({
+    attributes:[
+      'source_name',
+      'source_id'
+    ]
   })
-    .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Creates a new OrderSources in the DB
-export function create(req, res) {
-  return OrderSources.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}
-
-// Updates an existing OrderSources in the DB
-export function update(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  return OrderSources.find({
-    where: {
-      _id: req.params.id
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Deletes a OrderSources from the DB
-export function destroy(req, res) {
-  return OrderSources.find({
-    where: {
-      _id: req.params.id
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
     .catch(handleError(res));
 }

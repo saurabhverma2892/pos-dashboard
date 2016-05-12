@@ -2,7 +2,7 @@
 (function(){
 
 class DashboardviewComponent {
-  constructor($scope, $http, Auth, Orders) {
+  constructor($scope, $http, Auth, Orders, $timeout) {
     
     $scope.log1 = [ [ 10, 100] , [20,20] , [ 30 , 500] , [ 40 , 100] , [ 50 , 175] , [ 60 , 400] , [ 70 , 900] ];
     
@@ -14,16 +14,31 @@ class DashboardviewComponent {
 
       $scope.orders = Orders.orders;
 
+      $timeout(function(){
+        console.log($scope.data[0].values);
+        var a = [];
+        a.x = 40;
+        a.y = 2000;
+        $scope.data[0].values.push(a);
+        console.log(a);
+        console.log($scope.data[0].values);
+      }, 5000);
+
       var updateOrders = function(){
-          Orders.updateOrders().success(function(data){
+          Orders.updateOrders('YEAR').success(function(data){
              $scope.orders = data;
              Orders.orders = data;
-
-
+             console.log(data);
              $scope.bar1 = [];
+             $scope.total_orders = 0;
+             $scope.total_revenue = 0;
              angular.forEach($scope.orders, function(order){
-               $scope.bar1.push([order.date_added, order.order_amount])
+              $scope.total_orders+=order.orders_count;
+              $scope.total_revenue+=order.revenue;
+              /*var d = new Date(order.date_added);
+              var timestampd = d.getTime();*/
 
+               $scope.bar1.push([order.date, order.revenue])
              });
              
              $scope.log1 = $scope.bar1;
@@ -56,33 +71,6 @@ class DashboardviewComponent {
       });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    $scope.getTotalRevenue = function(){
-        var total = 0;
-        console.log();
-        for(var i = 0; i < $scope.orders.length; i++){
-            var order_amount = $scope.orders[i].order_amount;
-            total += order_amount;
-        }
-        return total;
-    }
-
-    $scope.getTotalNumber = function(){
-      return $scope.orders.length;
-    }
-
     /* Chart options */
 
     /* Chart data */
@@ -90,13 +78,16 @@ class DashboardviewComponent {
     $scope.options = {
                 chart: {
                     type: 'linePlusBarChart',
-                    height: 500,
+                    height: 300,
+                    width: 600,
                     margin: {
                         top: 30,
                         right: 75,
                         bottom: 50,
                         left: 75
                     },
+                    focusEnable: false,
+                    clipEdge:true,
                     /*bars: {
                         forceY: [0]
                     },
@@ -105,6 +96,7 @@ class DashboardviewComponent {
                     }, */
 
                     color: ['#2ca02c', 'darkred'],
+                    /*
                     x: function(d,i) { return i },
                     xAxis: {
                         axisLabel: 'X Axis',
@@ -114,15 +106,17 @@ class DashboardviewComponent {
                                 return d3.time.format('%x')(new Date(dx))
                             }
                             return null;
-                        }
+                        },
+                        clipEdge:true,
                     }, 
                     x2Axis: {
                         tickFormat: function(d) {
                             var dx = $scope.data[0].values[d] && $scope.data[0].values[d].x || 0;
                             return d3.time.format('%d-%b-%Y')(new Date(dx))
                         },
-                        showMaxMin: false
-                    }, /*
+                        showMaxMin: false,
+                        clipEdge:true,
+                    }, 
                     y1Axis: {
                         axisLabel: 'Y1 Axis',
                         tickFormat: function(d){

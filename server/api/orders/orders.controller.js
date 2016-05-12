@@ -11,6 +11,7 @@
 
 import _ from 'lodash';
 import {Orders} from '../../sqldb';
+import sequelize from 'sequelize';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -60,7 +61,13 @@ function handleError(res, statusCode) {
 
 // Gets a list of Orderss
 export function index(req, res) {
+
   return Orders.findAll({
+    attributes: [
+      [sequelize.fn('SUM', sequelize.col('order_amount')), 'revenue'],
+      [sequelize.fn('COUNT', sequelize.col('id')), 'orders_count'],
+      [sequelize.fn(req.query.date_type, sequelize.col('date_added')), 'date']
+    ],
     where: {
       $and:{cloud_site_id: req.query.id,
             date_added: {
@@ -69,61 +76,9 @@ export function index(req, res) {
             },
             location_id: req.query.location_id
       }
-    }
+    },
+    group:[sequelize.fn(req.query.date_type,sequelize.col('date_added'))],
   })
     .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Gets a single Orders from the DB
-export function show(req, res) {
-  console.log("chal rha hai yahan");
-  return Orders.findAll({
-    where: {
-      $and:{cloud_site_id: req.params.id,
-            data_created: {
-              $lt: req.params.date_to,
-              $gt: req.params.date_from
-            }
-      }
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Creates a new Orders in the DB
-export function create(req, res) {
-  return Orders.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}
-
-// Updates an existing Orders in the DB
-export function update(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  return Orders.find({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-// Deletes a Orders from the DB
-export function destroy(req, res) {
-  return Orders.find({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
     .catch(handleError(res));
 }

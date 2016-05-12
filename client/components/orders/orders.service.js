@@ -32,13 +32,14 @@ angular.module('dashboardApp')
                                                   }});*/
             });
 
-    var updateOrders = function(){
+    var updateOrders = function(date_type){
         return  $http({url:'/api/orders/',
                          method:'GET',
                          params:{ date_from:filters.date_from,
                                   date_to:filters.date_to,
                                   location_id:filters.selectedLocation.location_id,
-                                  id:Auth.getCurrentUser().cloud_site_id
+                                  id:Auth.getCurrentUser().cloud_site_id,
+                                  date_type:date_type
                                   }});
     }
 
