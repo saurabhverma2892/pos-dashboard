@@ -2,6 +2,7 @@
 
 class LoginController {
   constructor(Auth, $state) {
+    
     this.user = {};
     this.errors = {};
     this.submitted = false;
